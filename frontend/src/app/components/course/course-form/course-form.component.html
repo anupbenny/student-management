@@ -1,0 +1,51 @@
+<form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+  <mat-card>
+    <mat-card-header>
+      <h4>{{action | titlecase}} Course</h4>
+    </mat-card-header>
+    <mat-card-content>
+
+      <div class="form-fields">
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          @if (addMode) {
+            <input matInput formControlName="name" required>
+          } @else {
+            <input matInput formControlName="name" readonly>
+          }
+          <mat-error *ngIf="courseForm.get('name')?.hasError('required')">Name is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Enter a date range</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate formControlName="startDate" placeholder="Start date">
+            <input matEndDate formControlName="endDate" placeholder="End date">
+          </mat-date-range-input>
+          <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        
+          @if (courseForm.controls['startDate'].hasError('matStartDateInvalid')) {
+            <mat-error>Invalid start date</mat-error>
+          }
+          @if (courseForm.controls['endDate'].hasError('matEndDateInvalid')) {
+            <mat-error>Invalid end date</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Min GPA</mat-label>
+          <input matInput type="number" formControlName="minGpa">
+          <mat-error *ngIf="courseForm.get('minGpa')?.hasError('required')">GPA is required</mat-error>
+          <mat-error *ngIf="courseForm.get('minGpa')?.hasError('min')">GPA must be at least 0</mat-error>
+          <mat-error *ngIf="courseForm.get('minGpa')?.hasError('max')">GPA cannot exceed 4.0</mat-error>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="buttons">
+      <a mat-raised-button (click)="onCancel()" class="dialog-cancel-btn">Cancel</a>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!courseForm.valid">Continue</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

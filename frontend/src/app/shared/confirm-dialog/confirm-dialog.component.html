@@ -1,0 +1,8 @@
+<h4 mat-dialog-title>{{data.title}}</h4>
+<div mat-dialog-content>
+    <p [innerHTML]="data.text"></p>
+</div>
+<div mat-dialog-actions class="buttons">
+  <button mat-stroked-button type="button" mat-dialog-close (click)="no()">No</button>
+  <button mat-flat-button color="primary" (click)="yes()">Yes</button>
+</div>

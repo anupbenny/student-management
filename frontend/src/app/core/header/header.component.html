@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+  <div class="logo" (click)="navHome()">
+    <span class="logo-text">SMS</span>
+  </div>
+
+  <span class="spacer"></span>
+
+  <mat-nav-list>
+    <a mat-list-item routerLink="/home" routerLinkActive="active-link">Home</a>
+    <a mat-list-item routerLink="/students" routerLinkActive="active-link" [matBadge]="studentsCount$ | async" matBadgePosition="before">Students</a>
+    <a mat-list-item routerLink="/courses" routerLinkActive="active-link" [matBadge]="coursesCount$ | async" matBadgePosition="before">Courses</a>
+  </mat-nav-list>
+
+  <span class="spacer"></span>
+</mat-toolbar>
+<div>
+  
+</div>

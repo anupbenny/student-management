@@ -1,0 +1,41 @@
+<form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+  <mat-card>
+    <mat-card-header>
+      <h5>{{action | titlecase}} Student</h5>
+    </mat-card-header>
+    <mat-card-content>
+
+      <div class="form-fields">
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          @if (addMode) {
+          <input matInput formControlName="name" required>
+          } @else {
+          <input matInput formControlName="name" readonly>
+          }
+          <mat-error *ngIf="studentForm.get('name')?.hasError('required')">Student name is mandatory</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>GPA</mat-label>
+          <input matInput type="number" formControlName="gpa" required>
+          <mat-error *ngIf="studentForm.get('gpa')?.hasError('required')">GPA is required</mat-error>
+          <mat-error *ngIf="studentForm.get('gpa')?.hasError('min')">GPA must be at least 0</mat-error>
+          <mat-error *ngIf="studentForm.get('gpa')?.hasError('max')">GPA cannot exceed 4.0</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Courses</mat-label>
+          <mat-select formControlName="courses" multiple (selectionChange)="onSelectionChange($event)">
+            @for (course of allCourses; track course) {
+            <mat-option [value]="course.id">{{course.name}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="buttons">
+      <a mat-raised-button (click)="onCancel()" class="dialog-cancel-btn">Cancel</a>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!studentForm.valid">Continue</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

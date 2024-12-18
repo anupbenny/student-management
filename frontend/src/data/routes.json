@@ -1,0 +1,4 @@
+{
+  "students": "sms/api/students",
+  "courses": "sms/api/courses"
+}

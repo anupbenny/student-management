@@ -1,0 +1,38 @@
+{
+  "students": [
+    {
+      "name": "Test",
+      "gpa": 2,
+      "courses": [
+        1
+      ],
+      "id": "e165"
+    },
+    {
+      "name": "asd",
+      "gpa": 2,
+      "id": "3258"
+    },
+    {
+      "id": "11dc",
+      "name": "asdf",
+      "gpa": 0
+    }
+  ],
+  "courses": [
+    {
+      "name": "Math 101",
+      "startDate": "2024-12-09T06:00:00.000Z",
+      "endDate": "2024-12-27T06:00:00.000Z",
+      "minGpa": 0,
+      "id": "1"
+    },
+    {
+      "name": "Science 101",
+      "startDate": "2024-12-09T06:00:00.000Z",
+      "endDate": "2024-12-28T06:00:00.000Z",
+      "minGpa": 0,
+      "id": "2"
+    }
+  ]
+}

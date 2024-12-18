@@ -1,0 +1,34 @@
+<mat-progress-bar mode="indeterminate" *ngIf="loading$ | async"></mat-progress-bar>
+<h4>
+  Student Management
+</h4>
+<mat-tab-group [(selectedIndex)]="selectedTabIndex">
+  <mat-tab label="Student List">
+    <div class="actions">
+      <button mat-raised-button (click)="add()">Add Student</button>
+    </div>
+    <app-student-list (navigateToNextTab)="goToNextTab($event)"></app-student-list>
+  </mat-tab>
+  <mat-tab label="Enrollments">
+    <div class="actions">
+      <button mat-raised-button (click)="enroll()" *ngIf="selectedStudentId">Enroll Student</button>
+    </div>
+    <div class="actions">
+      <mat-form-field>
+        <mat-label>Student</mat-label>
+        <mat-select [(ngModel)]="selectedStudentId" name="student" (selectionChange)="onSelectionChange($event)">
+          @for (student of students$ | async; track student) {
+          <mat-option [value]="student.id">{{student.name}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <h5>Course Enrolled:</h5>
+      <mat-list>
+        <mat-list-item *ngFor="let course of enrolledCourses$ | async">
+          {{ getCourseName(course) }}
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </mat-tab>
+</mat-tab-group>

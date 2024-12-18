@@ -1,0 +1,37 @@
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: blue;
+}
+
+.logo-text {
+  font-size: 20px;
+}
+
+mat-nav-list {
+  display: flex;
+}
+
+mat-nav-list a {
+  margin-left: 15px;
+  min-width: 150px;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.active-link {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+button {
+  color: white;
+}
